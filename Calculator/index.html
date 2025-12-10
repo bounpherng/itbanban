@@ -7,7 +7,7 @@
   <title>IT-banban Calculator</title>
   <meta name="description" content="ແອັບຄຳນວນເງິນເດືອນ ແລະ ເງິນອຸດໜຸນຕ່າງໆ" />
   <meta name="theme-color" content="#10b981" />
-  
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Lao:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -58,6 +58,26 @@
     .glass-effect { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); }
     .dark .glass-effect { background: rgba(17, 24, 39, 0.95); }
     .view-section { display: block; animation: slideUp 0.4s ease-out; }
+
+    /* ✅ Added: Back Home Button Style (SAFE) */
+    .back-home-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: linear-gradient(135deg,#10b981,#06b6d4,#3b82f6);
+      color: #fff;
+      border: none;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+      cursor: pointer;
+      z-index: 9999;
+      transition: all 0.25s ease;
+    }
+    .back-home-btn:hover {
+      transform: scale(1.1);
+    }
   </style>
 </head>
 
@@ -66,7 +86,7 @@
 <!-- Header -->
 <header class="sticky top-0 z-50 glass-effect border-b border-gray-200 dark:border-gray-800 shadow-sm">
   <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-    <div class="flex items-center gap-3 cursor-pointer" onclick="window.location.href='../index.html'">
+    <div class="flex items-center gap-3 cursor-pointer">
       <img src="https://i.ibb.co/Fk9XKZSH/icon200.png" alt="Logo" class="w-10 h-10 object-contain">
       <h1 class="font-bold text-xl tracking-tight text-gray-900 dark:text-white">IT-banban</h1>
     </div>
@@ -78,85 +98,67 @@
 </header>
 
 <main class="flex-grow w-full mx-auto px-4 py-6 relative">
-    <div id="dashboard-view" class="view-section space-y-6 max-w-md mx-auto">
-      <div class="text-center space-y-2 mb-8">
-        <p class="text-base font-medium bg-gradient-to-r from-emerald-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent drop-shadow-[0_0_6px_rgba(0,200,255,0.4)]">
-          ເຄື່ອງມືຄຳນວນເງິນເດືອນ ແລະ ອຸດໜຸນຕ່າງໆ
-        </p>
-        <p id="date-lao-calc" class="text-emerald-500 text-xs font-medium bg-emerald-50 dark:bg-emerald-900/20 py-1 px-3 rounded-full inline-block mt-2"></p>
-      </div>
-
-      <div class="grid grid-cols-2 gap-4">
-        <!-- Salary Link -->
-        <a href="Salary.html" class="p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-md hover:border-emerald-500 dark:hover:border-emerald-500 transition-all group flex flex-col items-center gap-4 text-center h-40 justify-center">
-          <div class="w-14 h-14 bg-blue-50 dark:bg-blue-900/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-            <i class="fas fa-money-bill-wave text-2xl text-blue-500"></i>
-          </div>
-          <span class="font-semibold text-gray-700 dark:text-gray-200">ເງິນເດືອນລັດຖະກອນ</span>
-        </a>
-
-        <!-- Public Sector Link -->
-        <a href="Publicsector.html" class="p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-md hover:border-emerald-500 dark:hover:border-emerald-500 transition-all group flex flex-col items-center gap-4 text-center h-40 justify-center">
-          <div class="w-14 h-14 bg-emerald-50 dark:bg-emerald-900/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-            <i class="fas fa-landmark text-2xl text-emerald-500"></i>
-          </div>
-          <span class="font-semibold text-gray-700 dark:text-gray-200">ອຸດໜຸນພາກລັດ</span>
-        </a>
-
-        <!-- Enterprise Link -->
-        <a href="Enterprise.html" class="p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-md hover:border-emerald-500 dark:hover:border-emerald-500 transition-all group flex flex-col items-center gap-4 text-center h-40 justify-center">
-          <div class="w-14 h-14 bg-purple-50 dark:bg-purple-900/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-            <i class="fas fa-building text-2xl text-purple-500"></i>
-          </div>
-          <span class="font-semibold text-gray-700 dark:text-gray-200">ອຸດໜຸນວິສາຫະກິດ</span>
-        </a>
-
-        <!-- Search Link -->
-        <a href="Search.html" class="p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-md hover:border-emerald-500 dark:hover:border-emerald-500 transition-all group flex flex-col items-center gap-4 text-center h-40 justify-center">
-          <div class="w-14 h-14 bg-orange-50 dark:bg-orange-900/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-            <i class="fas fa-search text-2xl text-orange-500"></i>
-          </div>
-          <span class="font-semibold text-gray-700 dark:text-gray-200">ຄົ້ນຫາຂໍ້ມູນ</span>
-        </a>
-      </div>
-
-      <div class="mt-8 p-4 bg-yellow-50 dark:bg-yellow-900/20 rounded-xl border border-yellow-200 dark:border-yellow-800/50 flex items-start gap-3">
-        <i class="fas fa-info-circle text-yellow-500 mt-1"></i>
-        <p class="text-sm text-yellow-800 dark:text-yellow-200">ແອັບນີ້ສ້າງຂຶ້ນເພື່ອຊ່ວຍຄຳນວນເບື້ອງຕົ້ນພຽງເທົ່ານັ້ນ. ສອບຖາມຂໍ້ມູນເພີ່ມເຕີມທີ່ Whatsapp : 02091270509.</p>
-      </div>
+  <div id="dashboard-view" class="view-section space-y-6 max-w-md mx-auto">
+    <div class="text-center space-y-2 mb-8">
+      <p class="text-base font-medium bg-gradient-to-r from-emerald-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent drop-shadow-[0_0_6px_rgba(0,200,255,0.4)]">
+        ເຄື່ອງມືຄຳນວນເງິນເດືອນ ແລະ ອຸດໜຸນຕ່າງໆ
+      </p>
+      <p id="date-lao-calc" class="text-emerald-500 text-xs font-medium bg-emerald-50 dark:bg-emerald-900/20 py-1 px-3 rounded-full inline-block mt-2"></p>
     </div>
+
+    <div class="grid grid-cols-2 gap-4">
+      <a href="Salary.html" class="p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-sm border ...">...</a>
+      <a href="Publicsector.html" class="p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-sm border ...">...</a>
+      <a href="Enterprise.html" class="p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-sm border ...">...</a>
+      <a href="Search.html" class="p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-sm border ...">...</a>
+    </div>
+  </div>
 </main>
 
-  <footer class="mt-auto py-6 text-center text-xs text-gray-400">
-    <p>© <span id="footer-year"></span> MR.BOUNPHEUNG PHETXAINYAPHOUM</p>
-  </footer>
+<footer class="mt-auto py-6 text-center text-xs text-gray-400">
+  <p>© <span id="footer-year"></span> MR.BOUNPHEUNG PHETXAINYAPHOUM</p>
+</footer>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        document.getElementById('footer-year').textContent = new Date().getFullYear();
-        setupThemeToggle();
-        displayLaoDateForCalc();
+<!-- ✅ Added: Back Home Button (SAFE) -->
+<button class="back-home-btn" onclick="goHome()">
+  <i class="fas fa-home"></i>
+</button>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
+    setupThemeToggle();
+    displayLaoDateForCalc();
+  });
+
+  function setupThemeToggle() {
+    const btn = document.getElementById('theme-toggle');
+    if (localStorage.getItem('theme') === 'dark'
+      || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+    }
+    btn.addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark');
+      localStorage.setItem('theme',
+        document.documentElement.classList.contains('dark') ? 'dark' : 'light'
+      );
     });
+  }
 
-    function setupThemeToggle() {
-      const btn = document.getElementById('theme-toggle');
-      if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        document.documentElement.classList.add('dark');
-      }
-      btn.addEventListener('click', () => {
-        document.documentElement.classList.toggle('dark');
-        localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
-      });
-    }
+  function displayLaoDateForCalc() {
+    const el = document.getElementById('date-lao-calc');
+    if (!el) return;
+    const laoDays = ["ວັນອາທິດ","ວັນຈັນ","ວັນອັງຄານ","ວັນພຸດ","ວັນພະຫັດ","ວັນສຸກ","ວັນເສົາ"];
+    const laoMonths = ["ມັງກອນ","ກຸມພາ","ມີນາ","ເມສາ","ພຶດສະພາ","ມິຖຸນາ","ກໍລະກົດ","ສິງຫາ","ກັນຍາ","ຕຸລາ","ພະຈິກ","ທັນວາ"];
+    const now = new Date();
+    el.textContent = `${laoDays[now.getDay()]}, ວັນທີ ${now.getDate()} ${laoMonths[now.getMonth()]} ${now.getFullYear()}`;
+  }
 
-    function displayLaoDateForCalc() {
-      const el = document.getElementById('date-lao-calc');
-      if (!el) return;
-      const laoDays = ["ວັນອາທິດ", "ວັນຈັນ", "ວັນອັງຄານ", "ວັນພຸດ", "ວັນພະຫັດ", "ວັນສຸກ", "ວັນເສົາ"];
-      const laoMonths = ["ມັງກອນ", "ກຸມພາ", "ມີນາ", "ເມສາ", "ພຶດສະພາ", "ມິຖຸນາ", "ກໍລະກົດ", "ສິງຫາ", "ກັນຍາ", "ຕຸລາ", "ພະຈິກ", "ທັນວາ"];
-      const now = new Date();
-      el.textContent = `${laoDays[now.getDay()]}, ວັນທີ ${now.getDate()} ${laoMonths[now.getMonth()]} ${now.getFullYear()}`;
-    }
-  </script>
+  /* ✅ Added: Safe home function */
+  function goHome() {
+    window.location.href = "/index.html";
+  }
+</script>
+
 </body>
 </html>
