@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="lo" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ຄູ່ມືການຕິດຕັ້ງ IT-BANBAN Add-in</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Lao:wght@100..900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+          darkMode: 'class',
+          theme: {
+            extend: {
+              fontFamily: {
+                sans: ['Noto Sans Lao', 'sans-serif'],
+              },
+            }
+          }
+        }
+    </script>
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Noto Sans Lao', sans-serif;
+            transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #166534 0%, #22c55e 100%);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease;
+        }
+        .dark .glass-card {
+            background: rgba(31, 41, 55, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+    </style>
+     <script>
+        // Theme Check for standalone file
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
+
+    <!-- Simple Navbar with Back Button -->
+    <nav class="bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-md fixed w-full z-50 border-b border-gray-200 dark:border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+
+                </div>
+                <div class="flex items-center space-x-4">
+                     <span class="text-green-700 dark:text-green-400 text-lg md:text-xl font-bold flex items-center">
+                        <i class="fa-solid fa-laptop-code mr-2"></i> IT-BANBAN
+                    </span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Content from Install Page -->
+    <div class="pt-16">
+        <!-- Header for Install Page -->
+        <header class="gradient-bg text-white pt-10 pb-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h1 class="text-3xl md:text-5xl font-bold mb-6">ຄູ່ມືການຕິດຕັ້ງ ແລະ ໃຊ້ງານ Add-in</h1>
+                <p class="text-lg md:text-xl mb-8 opacity-90">ວິທີແກ້ໄຂບັນຫາ Setup ແລະ ການນຳໃຊ້ Word/Excel Add-in</p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="#troubleshoot" class="bg-white text-green-700 font-bold py-3 px-8 rounded-full shadow-lg hover:bg-gray-100 transition flex items-center justify-center">
+                        <i class="fa-solid fa-triangle-exclamation mr-2"></i> ແກ້ໄຂບັນຫາຕິດຕັ້ງບໍ່ໄດ້
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Troubleshooting Section -->
+        <section id="troubleshoot" class="py-12 bg-white dark:bg-gray-900 transition-colors">
+            <div class="max-w-5xl mx-auto px-4">
+                <div class="bg-red-50 dark:bg-red-900/20 border-l-4 border-red-500 p-6 md:p-8 rounded-r-lg shadow-sm">
+                    <h2 class="text-2xl md:text-3xl font-bold text-red-700 dark:text-red-400 mb-6 flex items-center">
+                        <i class="fa-solid fa-shield-virus mr-3"></i> ບັນຫາການຕິດຕັ້ງ ແລະ ວິທີແກ້ໄຂ
+                    </h2>
+                    <p class="text-lg text-gray-700 dark:text-gray-300 mb-6">
+                        ຫາກທ່ານດາວໂຫຼດໄຟລ໌ <code class="bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded text-red-600 dark:text-red-400 font-bold">Setup_Word.exe</code> ຫຼື <code class="bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded text-green-600 dark:text-green-400 font-bold">Setup_Excel.exe</code> ມາແລ້ວ ແຕ່ບໍ່ສາມາດຕິດຕັ້ງໄດ້ ຫຼື ຖືກລະບົບປ້ອງກັນ (Antivirus) ລົບຖິ້ມ:
+                    </p>
+
+                    <div class="grid md:grid-cols-2 gap-8 mt-8">
+                        <!-- Step 1 -->
+                        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow border border-gray-200 dark:border-gray-700">
+                            <div class="text-red-500 font-bold text-xl mb-3">1. ປິດ Real-time Protection ຊົ່ວຄາວ</div>
+                            <p class="text-gray-600 dark:text-gray-400 mb-4">Windows Defender ອາດຈະເຂົ້າໃຈຜິດວ່າໄຟລ໌ເປັນໄວຣັດເນື່ອງຈາກເປັນໂປຣແກຣມທີ່ຂຽນຂຶ້ນເອງ (Unknown Publisher).</p>
+                            <ul class="list-disc list-inside text-sm text-gray-500 dark:text-gray-400 space-y-2">
+                                <li>ໄປທີ່ <strong>Settings</strong> > <strong>Update & Security</strong></li>
+                                <li>ເລືອກ <strong>Windows Security</strong> > <strong>Virus & threat protection</strong></li>
+                                <li>ກົດ <strong>Manage settings</strong> ແລະປິດ <strong>Real-time protection</strong></li>
+                            </ul>
+                        </div>
+
+                        <!-- Step 2 -->
+                        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow border border-gray-200 dark:border-gray-700">
+                            <div class="text-blue-600 dark:text-blue-400 font-bold text-xl mb-3">2. ວິທີກົດ Run Anyway</div>
+                            <p class="text-gray-600 dark:text-gray-400 mb-4">ເມື່ອເປີດໄຟລ໌ແລ້ວຂຶ້ນໜ້າຈໍສີຟ້າ (Windows protected your PC):</p>
+                            <div class="bg-blue-50 dark:bg-blue-900/20 p-3 rounded text-sm border border-blue-100 dark:border-blue-800">
+                                1. ຄິກທີ່ຂໍ້ຄວາມຂີດກ້ອງ <u><strong>More info</strong></u><br>
+                                2. ປຸ່ມ <strong>Run anyway</strong> ຈະປະກົດຂຶ້ນມາ ໃຫ້ກົດປຸ່ມນັ້ນເພື່ອຕິດຕັ້ງ.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Word Add-in Section -->
+        <section id="word-addin" class="py-12 bg-green-50 dark:bg-green-900/10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <span class="bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200 text-xs font-semibold px-2.5 py-0.5 rounded uppercase tracking-wide">Microsoft Word</span>
+                    <h2 class="text-3xl font-bold text-gray-900 dark:text-white mt-2">IT-BANBAN Word Tools</h2>
+                    <div class="w-20 h-1 bg-blue-500 mx-auto mt-4 rounded"></div>
+                </div>
+
+                <div class="flex flex-col md:flex-row items-center gap-12">
+                    <!-- Word Image Updated -->
+                    <div class="w-full md:w-1/2">
+                        <div class="relative rounded-2xl shadow-2xl overflow-hidden border-4 border-white dark:border-gray-700 transform rotate-2 hover:rotate-0 transition duration-500 group">
+                            <div class="bg-blue-600 h-64 md:h-80 flex items-center justify-center text-white flex-col relative">
+                                <img src="https://i.ibb.co/XxCPFb70/word99.jpg" alt="Word Add-in Interface" class="absolute inset-0 w-full h-full object-cover"> 
+                                <div class="absolute inset-0 bg-blue-900/20 group-hover:bg-transparent transition"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Word Features -->
+                    <div class="w-full md:w-1/2">
+                        <div class="glass-card p-8 rounded-2xl">
+                            <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">ຄຸນສົມບັດພິເສດ</h3>
+                            <ul class="space-y-4">
+                                <li class="flex items-start">
+                                    <div class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center mt-1">
+                                        <i class="fa-solid fa-check text-blue-600 dark:text-blue-400"></i>
+                                    </div>
+                                    <div class="ml-4">
+                                        <p class="font-bold text-gray-900 dark:text-gray-100">ອ່ານຕົວເລກເປັນຕົວໜັງສື</p>
+                                        <p class="text-gray-600 dark:text-gray-400 text-sm">ປ່ຽນຕົວເລກໃຫ້ເປັນຄຳອ່ານພາສາລາວ ແລະ ພາສາອັງກິດ ໄດ້ຢ່າງຖືກຕ້ອງ.</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center mt-1">
+                                        <i class="fa-solid fa-calculator text-blue-600 dark:text-blue-400"></i>
+                                    </div>
+                                    <div class="ml-4">
+                                        <p class="font-bold text-gray-900 dark:text-gray-100">ຄຳນວນດ້ວຍສີ (Sum/Avg by Color)</p>
+                                        <p class="text-gray-600 dark:text-gray-400 text-sm">ລວມຜົນ ແລະ ຫາຄ່າສະເລ່ຍຈາກຂໍ້ມູນທີ່ໄຮໄລ້ສີໄວ້.</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center mt-1">
+                                        <i class="fa-solid fa-file-lines text-blue-600 dark:text-blue-400"></i>
+                                    </div>
+                                    <div class="ml-4">
+                                        <p class="font-bold text-gray-900 dark:text-gray-100">ຈັດການເອກະສານມາດຕະຖານ</p>
+                                        <p class="text-gray-600 dark:text-gray-400 text-sm">ຕັ້ງຄ່າໜ້າເຈ້ຍແບບທາງການ ແລະ ຕັ້ງຟອນລາວ (Phetsarath OT/Noto Sans) ອັດຕະໂນມັດ.</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Excel Add-in Section -->
+        <section id="excel-addin" class="py-12 bg-white dark:bg-gray-900 relative overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="text-center mb-12">
+                    <span class="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200 text-xs font-semibold px-2.5 py-0.5 rounded uppercase tracking-wide">Microsoft Excel</span>
+                    <h2 class="text-3xl font-bold text-gray-900 dark:text-white mt-2">IT-BANBAN Excel Pro</h2>
+                    <div class="w-20 h-1 bg-green-500 mx-auto mt-4 rounded"></div>
+                </div>
+
+                <div class="flex flex-col md:flex-row-reverse items-center gap-12">
+                    <!-- Excel Image Updated -->
+                    <div class="w-full md:w-1/2">
+                        <div class="relative rounded-2xl shadow-2xl overflow-hidden border-4 border-white dark:border-gray-700 transform -rotate-2 hover:rotate-0 transition duration-500 group">
+                             <div class="bg-green-600 h-64 md:h-80 flex items-center justify-center text-white flex-col relative">
+                                <img src="https://i.ibb.co/whfLTHhr/image.jpg" alt="Excel Add-in Interface" class="absolute inset-0 w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-green-900/20 group-hover:bg-transparent transition"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Excel Features -->
+                    <div class="w-full md:w-1/2">
+                        <div class="glass-card p-8 rounded-2xl border-l-4 border-green-500">
+                            <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">ສຸດຍອດເຄື່ອງມືຄຳນວນ</h3>
+                            <div class="grid grid-cols-1 gap-6">
+                                <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg">
+                                    <h4 class="font-bold text-green-800 dark:text-green-300 flex items-center mb-2">
+                                        <i class="fa-solid fa-money-bill-wave mr-2"></i> ລະບົບເງິນເດືອນ & ອາກອນ
+                                    </h4>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">
+                                        ຄຳນວນເງິນເດືອນ, ເງິນປີ, ອາກອນລາຍໄດ້ ແລະ ເງິນອຸດໜູນຕ່າງໆ ຕາມລະບຽບປະກັນສັງຄົມ.
+                                    </p>
+                                </div>
+                                <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg">
+                                    <h4 class="font-bold text-green-800 dark:text-green-300 flex items-center mb-2">
+                                        <i class="fa-solid fa-language mr-2"></i> ອ່ານຕົວເລກ 5 ພາສາ
+                                    </h4>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                                        ຮອງຮັບ: ລາວ, ໄທ, ອັງກິດ, ຫວຽດນາມ, ຈີນ
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Download Section -->
+        <section id="download" class="py-16 bg-gray-900 text-white">
+            <div class="max-w-4xl mx-auto px-4 text-center">
+                <h2 class="text-3xl font-bold mb-8">ຮັບປະກັນຄວາມປອດໄພ & ດາວໂຫຼດ</h2>
+                <div class="grid md:grid-cols-2 gap-8 mb-12">
+                    <div class="bg-gray-800 p-6 rounded-lg border border-gray-700 hover:border-green-500 transition cursor-pointer group">
+                        <i class="fa-brands fa-microsoft text-4xl mb-4 group-hover:text-green-400 transition"></i>
+                        <h3 class="text-xl font-bold mb-2">Setup_Word.exe</h3>
+                        <p class="text-gray-400 text-sm mb-4">Add-in ສໍາລັບ Microsoft Word</p>
+                        <!-- Changed to direct Link -->
+                        <a href="https://drive.google.com/file/d/1SpGUXu526HfQVxg_O7vaqhhTZatFIfjp/view?usp=sharing" target="_blank" class="block w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded transition font-bold text-center">
+                            ດາວໂຫຼດດຽວນີ້
+                        </a>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-lg border border-gray-700 hover:border-green-500 transition cursor-pointer group">
+                        <i class="fa-solid fa-table text-4xl mb-4 group-hover:text-green-400 transition"></i>
+                        <h3 class="text-xl font-bold mb-2">Setup_Excel.exe</h3>
+                        <p class="text-gray-400 text-sm mb-4">Add-in ສໍາລັບ Microsoft Excel</p>
+                        <!-- Changed to direct Link -->
+                        <a href="https://drive.google.com/file/d/1Gd_W4itmTyvqivYFTPGF8W3DJ4wlsUuB/view?usp=sharing" target="_blank" class="block w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded transition font-bold text-center">
+                            ດາວໂຫຼດດຽວນີ້
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 py-6">
+            <div class="text-center text-gray-500 dark:text-gray-400 text-sm">
+                <p>&copy; 2025 IT-banban. All rights reserved.</p>
+    
+            </div>
+        </footer>
+
+        <!-- Floating Home Button (Bottom Right) -->
+        <a href="index.html" class="fixed bottom-5 right-4 z-50 w-11 h-11 bg-emerald-500 hover:bg-emerald-400 text-white rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:-translate-y-1">
+            <i class="fas fa-home text-sm"></i>
+        </a>
+    </div>
+
+</body>
+</html>
