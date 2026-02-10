@@ -1,8 +1,8 @@
 // 🔹 ປ່ຽນຄ່ານີ້ທຸກເທື່ອທີ່ອັບເດດລະບົບ
-const APP_VERSION = 'v2026.03.02';
+const APP_VERSION = 'v2026.03.03';
 
 // 🔹 cache name = app name + version
-const CACHE_NAME = `ຄຳນວນເງີນເດືອນແລະເງີນອຸດໜຸນອປສ-${APP_VERSION}`;
+const CACHE_NAME = `ຄຳນວນເງີນເດືອນ,ອຸດໜຸນອປຊ-${APP_VERSION}`;
 
 const ASSETS_TO_CACHE = [
     './',
@@ -51,4 +51,5 @@ self.addEventListener('activate', (event) => {
     );
     self.clients.claim();
 });
+
 
